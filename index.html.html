@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bhena Birthday Coming Soon</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb, #a6c1ee);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: #fff;
+      text-align: center;
+    }
+    @keyframes gradientBG {
+      0% {background-position: 0% 50%;}
+      50% {background-position: 100% 50%;}
+      100% {background-position: 0% 50%;}
+    }
+    h1 {
+      font-size: 3em;
+      color: #fff;
+      text-shadow: 0 0 20px #ff4081;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .column {
+      padding: 30px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+      transition: transform 0.3s;
+    }
+    .column:hover {
+      transform: translateY(-10px);
+    }
+    #countdown {
+      font-size: 2.5em;
+      color: #ffeb3b;
+      text-shadow: 0 0 15px #ff4081;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% {transform: scale(1);}
+      50% {transform: scale(1.1);}
+      100% {transform: scale(1);}
+    }
+    .glow {
+      color: #fff;
+      text-shadow: 0 0 10px #ff4081, 0 0 20px #fff;
+      font-size: 1.2em;
+    }
+    .falling {
+      position: absolute;
+      animation: fall 10s linear infinite;
+      opacity: 0.9;
+      font-size: 2em;
+    }
+    @keyframes fall {
+      0% {top: -50px;}
+      100% {top: 100vh;}
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 20px;
+      background: #ff4081;
+      color: #fff;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #ff80ab;
+    }
+    #gameArea {
+      height: 200px;
+      position: relative;
+      background: rgba(255,255,255,0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎉 Bhena’s Birthday Coming Soon!</h1>
+  <div id="countdown"></div>
+
+  <div class="grid">
+    <!-- Daily Surprise Column -->
+    <div class="column">
+      <h2>🎁 Daily Surprise</h2>
+      <p id="dailySurprise"></p>
+    </div>
+
+    <!-- Keep Smiling Column -->
+    <div class="column">
+      <h2>😊 Keep Smiling</h2>
+      <p>“Smile, it’s your day!”</p>
+      <p>“Hamesha khush rehna, Bhena 💖”        Your smile is like free Wi Fi in class—everyone wants to connect! 📶😂 When you laugh, even the teacher’s chalk writes smoother ✏️🤣. So keep smiling, bhena, because without it, school feels like homework without recess 🏫🙃. You’re my sunshine 🌞, my comedian 🎭, and my forever partner in mischief 🤪👭</p>
+    </div>
+
+    <!-- Blessings Column -->
+    <div class="column">
+      <h2>🌟 Blessings</h2>
+     <p> Dear Bhena, may every step you take lead you closer to success 🌸. May your hard work shine brighter than the stars ✨, and may your dedication bring you endless achievements 🏆. Keep smiling 🌞, because your joy and determination are blessings that inspire everyone around you</p>
+    </div>
+
+    <!-- Hidden Surprise Column -->
+    <div class="column">
+      <h2>🎀 Hidden Surprise</h2>
+      <button onclick="showSurprise()">Click Me 🎈</button>
+      <p id="surpriseMsg" style="display:none;">Happy Birthday Bhena, My bhena is my sunshine 🌞, my laughter 😂, and my forever friend 🤝. She makes every boring class 📚 feel like a festival 🎉, and every small victory 🏆 brighter with her cheers. Her kindness 🌹, humor 🤪, and support 💕 add sparkle ✨ to my life.
+
+Life without my bhena would be like a sky without stars 🌌, a festival without lights 🪔, and a classroom without giggles 😔. That’s why I always say: I got God’s gift as you 🙏💖. You are not just important—you are irreplaceable 🌟, my blessing and my joy 🌈.
+
+✨ Thank you bhena for accepting me as your bhai 💖🤗 ✨
+Every day with you feels like a new chapter 📖 filled with laughter, love, and surprises 🎁. Truly, bhena, you are my God’s most precious gift, my partner in mischief 🎭, and my forever source of happiness 💕
+</p>
+    </div>
+
+    <!-- Mini Game Column -->
+    <div class="column">
+      <h2>🎮 Pop the Balloon</h2>
+      <p>Click the balloon before it falls!</p>
+      <div id="gameArea"></div>
+    </div>
+
+    <!-- Fireworks Column -->
+    <div class="column">
+      <h2>🎆 Fireworks</h2>
+      <button onclick="launchConfetti()">Celebrate!</button>
+    </div>
+  </div>
+
+  <script>
+    // Countdown
+    const countdown = document.getElementById("countdown");
+    const targetDate = new Date("July 30, 2026 00:00:00").getTime();
+    setInterval(() => {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+      const days = Math.floor(distance / (1000*60*60*24));
+      const hours = Math.floor((distance % (1000*60*60*24))/(1000*60*60));
+      const minutes = Math.floor((distance % (1000*60*60))/(1000*60));
+      const seconds = Math.floor((distance % (1000*60))/1000);
+      countdown.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      if(distance < 0){
+        countdown.innerHTML = "🎉 Happy Birthday Bhena! 🎉";
+        launchConfetti();
+      }
+    }, 1000);
+
+    // Daily Surprise
+    const surprises = [
+      "🌸 You are our sunshine!",
+      "🎈 Balloons of happiness are on the way!",
+      "🍫 Chocolate cake dreams loading...",
+      "🌈 Rainbow smiles for Bhena!",
+      "🎶 Music of laughter surrounds you!",
+      "💖 Forever our laughter partner!",
+      "✨ Countdown to joy continues...",
+      "🎀 Wrapped in love and blessings!",
+      "🌟 Shine bright, Bhena!",
+      "🎂 Birthday bash almost here!"
+    ];
+    function showDailySurprise() {
+      const today = new Date();
+      const targetDate = new Date("July 30, 2026");
+      const diffDays = Math.floor((targetDate - today) / (1000*60*60*24));
+      let message;
+      if (diffDays > 0 && diffDays <= surprises.length) {
+        message = surprises[surprises.length - diffDays];
+      } else if (diffDays <= 0) {
+        message = "🎉 Happy Birthday Bhena! 🎉";
+        launchConfetti();
+      } else {
+        message = "✨ Surprises will start soon!";
+      }
+      document.getElementById("dailySurprise").innerText = message;
+    }
+    showDailySurprise();
+
+    // Hidden Surprise
+    function showSurprise() {
+      document.getElementById("surpriseMsg").style.display = "block";
+    }
+
+    // Mini Game
+    function spawnBalloon(){
+      const balloon = document.createElement("div");
+      balloon.textContent = "🎈";
+      balloon.style.position = "absolute";
+      balloon.style.left = Math.random()*150 + "px";
+      balloon.style.top = "0px";
+      balloon.style.fontSize = "2em";
+      balloon.style.cursor = "pointer";
+      balloon.onclick = ()=>{balloon.remove(); alert("🎉 You popped it!");};
+      document.getElementById("gameArea").appendChild(balloon);
+
+      let pos = 0;
+      const fall = setInterval(()=>{
+        pos += 2;
+        balloon.style.top = pos+"px";
+        if(pos > 180){ balloon.remove(); clearInterval(fall); }
+      },100);
+    }
+    setInterval(spawnBalloon,3000);
+
+    // Falling elements
+    function createFalling(emoji) {
+      const el = document.createElement("div");
+      el.className = "falling";
+      el.style.left = Math.random()*100 + "vw";
+      el.textContent = emoji;
+      el.style.animationDuration = (5+Math.random()*5)+"s";
+      document.body.appendChild(el);
+      setTimeout(()=>el.remove(),10000);
+    }
+    setInterval(()=>createFalling("🎈"),1000);
+    setInterval(()=>createFalling("🌸"),1500);
+    setInterval(()=>createFalling("🎀"),2000);
+
+    // Confetti
+    function launchConfetti(){
+      for(let i=0;i<100;i++){
+        setTimeout(()=>createFalling("✨"),i*50);
+      }
+    }
+  </script>
+</body>
+</
